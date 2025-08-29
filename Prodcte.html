@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تصفح المنتجات — سوريانا جولد</title>
+  <link rel="icon" href="https://b.top4top.io/p_3528te3co1.jpg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ====== متغيرات التصميم ====== */
+    :root {
+      --brand: #d4af37;
+      --brand-700: #b9911c;
+      --ink: #111;
+      --muted: #5b5b5b;
+      --bg-soft: #faf7ef;
+      --card: #ffffff;
+      --shadow: 0 10px 30px rgba(0,0,0,.06);
+      --radius: 18px;
+      --container: min(1200px, 92vw);
+      --header-height: 72px;
+    }
+
+    /* ====== إعدادات عامة ====== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { 
+      margin: 0; 
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Kufi Arabic", Tahoma, Arial, sans-serif; 
+      color: #121212; 
+      background:#fff; 
+      padding: 0; 
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { padding: 0; margin: 0; list-style: none; }
+
+    /* ====== رأس الصفحة ====== */
+    header { 
+      position: sticky; 
+      top: 0; 
+      z-index: 50; 
+      background: rgba(255, 255, 255, 0.95); 
+      border-bottom: 1px solid #eee; 
+      backdrop-filter: blur(6px); 
+      height: var(--header-height);
+    }
+    .nav { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      height: 100%; 
+      width: var(--container);
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .brand { 
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+      font-weight: 800; 
+      font-size: clamp(1rem, 3vw, 1.2rem);
+    }
+    .brand img { 
+      width: 42px; 
+      height: 42px; 
+      object-fit: contain; 
+    }
+    .nav-links { 
+      display: flex; 
+      gap: clamp(12px, 2vw, 18px); 
+      align-items: center; 
+      font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+    .nav-links a { 
+      color: #333; 
+      font-weight: 600; 
+      transition: color 0.3s; 
+      padding: 8px 0; 
+      position: relative; 
+      white-space: nowrap;
+    }
+    .nav-links a:after { 
+      content: ''; 
+      position: absolute; 
+      bottom: 0; 
+      right: 0; 
+      width: 0; 
+      height: 2px; 
+      background: var(--brand); 
+      transition: width 0.3s; 
+    }
+    .nav-links a:hover { color: var(--brand); }
+    .nav-links a:hover:after { width: 100%; }
+
+    /* ====== محتوى الصفحة ====== */
+    .container {
+      width: var(--container);
+      margin: 20px auto;
+      padding: 0 16px;
+    }
+    
+    .page-header {
+      margin-bottom: 30px;
+      text-align: center;
+      padding: 0 10px;
+    }
+    
+    .page-header h1 {
+      font-size: clamp(24px, 5vw, 38px);
+      margin: 0 0 12px;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    
+    .page-header p {
+      color: var(--muted);
+      margin: 0;
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .catalog {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 24px;
+    }
+    
+    @media (max-width: 1024px) {
+      .catalog {
+        grid-template-columns: 240px 1fr;
+        gap: 20px;
+      }
+    }
+    
+    @media (max-width: 900px) { 
+      .catalog {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      } 
+      .sidebar { order: 2; }
+      .results { order: 1; }
+    }
+    
+    /* ====== الشريط الجانبي ====== */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+    
+    .section-title {
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--ink);
+      font-size: 1.1rem;
+    }
+    
+    .filter-group {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    
+    .filter-group label {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    input[type='search'], 
+    input[type='number'], 
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #e6e6e6;
+      border-radius: 12px;
+      font: inherit;
+      font-size: 1rem;
+    }
+    
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #f0f0f0;
+      margin-bottom: 8px;
+      transition: background-color 0.2s;
+      cursor: pointer;
+    }
+    
+    .checkbox-row:hover {
+      background-color: #fff7d6;
+    }
+    
+    .checkbox-row input[type="checkbox"] {
+      margin: 0;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    
+    .filter-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    
+    /* ====== الأزرار ====== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: var(--brand);
+      color: #111;
+      font-weight: 700;
+      transition: .25s ease;
+      border: 2px solid var(--brand);
+      text-align: center;
+      cursor: pointer;
+      font-size: 1rem;
+      min-height: 44px;
+    }
+    
+    .btn:hover {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+    
+    .btn.ghost {
+      background: transparent;
+      color: #111;
+      border: 1px solid #eee;
+    }
+    
+    .btn.ghost:hover {
+      background: #f5f5f5;
+      border-color: #ddd;
+    }
+    
+    /* ====== نتائج البحث ====== */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    
+    .toolbar .left {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .results-count {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    
+    @media (max-width: 1200px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+    
+    .product {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+      height: 100%;
+    }
+    
+    .product:hover {
+      transform: translateY(-5px);
+    }
+    
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .prod-body {
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .prod-title {
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--ink);
+      font-size: 1.1rem;
+      line-height: 1.3;
+    }
+    
+    .prod-meta {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    
+    .tag {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 8px;
+      background: #f7f7f7;
+      font-size: 0.75rem;
+      margin-left: 6px;
+      color: var(--muted);
+    }
+    
+    .price {
+      margin-top: auto;
+      font-weight: 800;
+      color: var(--brand-700);
+      font-size: 1.1rem;
+      padding-top: 10px;
+    }
+    
+    .empty {
+      padding: 40px 20px;
+      text-align: center;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+    
+    .empty i {
+      font-size: 48px;
+      margin-bottom: 16px;
+      color: #e0e0e0;
+    }
+    
+    .empty h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+    
+    .empty p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+    
+    .pager {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    
+    /* ====== تذييل الصفحة ====== */
+    footer {
+      background: #0f0f0f;
+      color: #e6e6e6;
+      padding: 40px 0;
+      margin-top: 60px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: 22px;
+      width: var(--container);
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    
+    @media (max-width: 1024px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+    
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .footer-brand img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+    }
+    
+    .footer h4 {
+      color: #fff;
+      margin-bottom: 16px;
+      font-size: 1.2rem;
+    }
+    
+    .footer a {
+      color: #e6e6e6;
+      opacity: .85;
+      transition: opacity 0.3s;
+      display: block;
+      padding: 5px 0;
+    }
+    
+    .footer a:hover {
+      opacity: 1;
+      color: var(--brand);
+    }
+    
+    .copyright {
+      border-top: 1px solid #222;
+      margin-top: 20px;
+      padding-top: 14px;
+      color: #aaa;
+      font-size: 14px;
+      text-align: center;
+      width: var(--container);
+      margin: 20px auto 0;
+      padding: 20px 16px 0;
+    }
+    
+    /* ====== تجاوبية إضافية ====== */
+    @media (max-width: 768px) {
+      .filter-actions {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 12px;
+      }
+      
+      .card {
+        padding: 16px;
+      }
+      
+      .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .toolbar .left {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .filter-group {
+        gap: 8px;
+      }
+      
+      .product img {
+        height: 180px;
+      }
+    }
+    
+    /* ====== إمكانية الوصول ====== */
+    :focus-visible {
+      outline: 3px solid rgba(212,175,55,.22);
+      outline-offset: 3px;
+    }
+    
+    /* تحسينات للشاشات الكبيرة جداً */
+    @media (min-width: 1600px) {
+      :root {
+        --container: 1400px;
+      }
+      
+      .grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+    
+    /* تحسينات للشاشات الصغيرة جداً */
+    @media (max-width: 360px) {
+      .brand span {
+        font-size: 0.9rem;
+      }
+      
+      .product img {
+        height: 160px;
+      }
+      
+      .prod-body {
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- رأس الصفحة -->
+  <header>
+    <div class="nav">
+      <a class="brand" href="index.html" aria-label="العودة للرئيسية">
+        <img src="https://b.top4top.io/p_3528te3co1.jpg" alt="شعار سوريانا جولد" />
+        <span>سوريانا جولد</span>
+      </a>
+      <nav class="nav-links" aria-label="روابط رئيسية">
+        <a href="index.html">الرئيسية</a>
+        <a href="Prodcte.html">المنتجات</a>
+        <a href="index.html#about">من نحن</a>
+        <a href="index.html#contact">تواصل</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- محتوى الصفحة -->
+  <div class="container">
+    <div class="page-header">
+      <h1>تصفّح منتجاتنا</h1>
+      <p>استخدم الفلاتر أدناه لتحديد المنتجات بسرعة — بالاسم، الفئة، السعر أو الوسوم</p>
+    </div>
+
+    <div class="catalog">
+      <!-- الشريط الجانبي للفلاتر -->
+      <aside class="sidebar card" aria-labelledby="filters-title">
+        <h3 id="filters-title" class="section-title">فلاتر البحث</h3>
+
+        <div class="filter-group">
+          <label for="search" class="section-title">بحث بالاسم</label>
+          <input id="search" type="search" placeholder="ابحث عن منتج (مثال: أرز، زيت)" aria-label="بحث بالاسم" />
+        </div>
+
+        <div class="filter-group">
+          <div class="section-title">الفئة</div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="filter-group">
+          <div class="section-title">الوسوم</div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="filter-group">
+          <div class="section-title">السعر (EGP)</div>
+          <div style="display: flex; gap: 12px;">
+            <div style="flex: 1;">
+              <label for="minPrice" class="muted">من</label>
+              <input id="minPrice" type="number" placeholder="0" min="0" />
+            </div>
+            <div style="flex: 1;">
+              <label for="maxPrice" class="muted">إلى</label>
+              <input id="maxPrice" type="number" placeholder="أقصى سعر" min="0" />
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-actions">
+          <button id="clearFilters" class="btn ghost">إعادة تعيين</button>
+          <button id="applyFilters" class="btn">تطبيق الفلاتر</button>
+        </div>
+      </aside>
+
+      <!-- نتائج البحث -->
+      <main class="results">
+        <div class="toolbar">
+          <div class="left">
+            <label for="sort" class="muted">ترتيب حسب:</label>
+            <select id="sort" aria-label="ترتيب النتائج">
+              <option value="relevance">الأكثر صلة</option>
+              <option value="price-asc">السعر: من الأقل للأعلى</option>
+              <option value="price-desc">السعر: من الأعلى للأقل</option>
+              <option value="latest">الأحدث</option>
+            </select>
+          </div>
+          <div class="results-count" id="resultsCount">--</div>
+        </div>
+
+        <div id="productsGrid" class="grid" role="list" aria-live="polite"></div>
+        <div id="empty" class="empty" hidden>
+          <i class="fas fa-search"></i>
+          <h3>لا توجد منتجات تطابق معايير البحث</h3>
+          <p>حاول تعديل الفلاتر أو البحث باستخدام كلمات أخرى</p>
+        </div>
+
+        <div class="pager" id="pager" aria-label="تنقّل بين الصفحات"></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- تذييل الصفحة -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="https://b.top4top.io/p_3528te3co1.jpg" alt="شعار سوريانا جولد" />
+          <div>
+            <strong>سوريانا جولد</strong>
+            <p style="margin:6px 0 0; color:#cfcfcf">للمواد الغذائية عالية الجودة</p>
+          </div>
+        </div>
+        <p>شركة رائدة في استيراد وتوزيع المواد الغذائية بمعايير جودة عالمية لتكون شريككم الموثوق في النجاح.</p>
+      </div>
+      <div>
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="index.html"><i class="fas fa-angle-left" style="margin-right: 8px;"></i> الرئيسية</a></li>
+          <li><a href="#products"><i class="fas fa-angle-left" style="margin-right: 8px;"></i> المنتجات</a></li>
+          <li><a href="#about"><i class="fas fa-angle-left" style="margin-right: 8px;"></i> من نحن</a></li>
+          <li><a href="#contact"><i class="fas fa-angle-left" style="margin-right: 8px;"></i> تواصل</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>سياسات</h4>
+        <ul>
+          <li><a href="#"><i class="fas fa-angle-left" style="margin-right: 8px;"></i> سياسة الخصوصية</a></li>
+          <li><a href="#"><i class="fas fa-angle-left" style="margin-right: 8px;"></i> الشروط والأحكام</a></li>
+          <li><a href="#"><i class="fas fa-angle-left" style="margin-right: 8px;"></i> سياسة الجودة</a></li>
+          <li><a href="#"><i class="fas fa-angle-left" style="margin-right: 8px;"></i> سياسة الإرجاع</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>النشرة البريدية</h4>
+        <p>اشترك في نشرتنا البريدية لتصلك آخر العروض والمنتجات الجديدة</p>
+        <form onsubmit="event.preventDefault(); newsletterSubscribe();">
+          <div class="filter-group">
+            <input type="email" placeholder="أدخل بريدك الإلكتروني" required />
+          </div>
+          <button class="btn" style="margin-top:10px; width: 100%;" type="submit">اشتراك</button>
+        </form>
+      </div>
+    </div>
+    <div class="copyright">
+      <small>© <span id="year"></span> سوريانا جولد. جميع الحقوق محفوظة.</small>
+    </div>
+  </footer>
+
+  <script>
+    // بيانات تجريبية — استبدل هذا بجلب من API حقيقي: fetch('/api/products')
+    const sampleData = [
+  {
+    "id": 1,
+    "name": "زنجبيل ناعم",
+    "category": "بهارات",
+    "price": 200,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/ginger-3290373_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 2,
+    "name": "فلفل ابيض ناعم",
+    "category": "بهارات",
+    "price": 550,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2017/07/31/19/56/pepper-2560608_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 3,
+    "name": "هيل ناعم",
+    "category": "بهارات",
+    "price": 850,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2017/07/31/19/56/cardamom-2560609_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 4,
+    "name": "بطاطا",
+    "category": "بهارات",
+    "price": 70,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2016/08/11/08/49/potatoes-1585070_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 5,
+    "name": "كزبرة ناعمة",
+    "category": "بهارات",
+    "price": 90,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2017/07/31/19/56/coriander-2560610_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 6,
+    "name": "فلفل اسود ناعم",
+    "category": "بهارات",
+    "price": 450,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2017/07/31/19/56/black-pepper-2560611_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 7,
+    "name": "كمون ناعm",
+    "category": "بهارات",
+    "price": 280,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2017/07/31/19/56/cumin-2560612_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 8,
+    "name": "شطة",
+    "category": "بهارات",
+    "price": 90,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2017/07/31/19/56/chili-powder-2560613_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 9,
+    "name": "جوزة الطيب ناعم",
+    "category": "بهارات",
+    "price": 510,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2017/07/31/19/56/nutmeg-2560614_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 10,
+    "name": "كركم ناعم",
+    "category": "بهارات",
+    "price": 175,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2017/07/31/19/56/turmeric-2560615_1280.jpg",
+    "created": "202 extreme-08-30"
+  },
+  {
+    "id": 11,
+    "name": "ثوم",
+    "category": "بهارات",
+    "price": 70,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/garlic-3290374_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 12,
+    "name": "بصل",
+    "category": "بهارات",
+    "price": 70,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/onion-3290375_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 13,
+    "name": "سمسم",
+    "category": "بهارات",
+    "price": 170,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/sesame-3290376_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 14,
+    "name": "قرفة ناعم",
+    "category": "بهارات",
+    "price": 220,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/cinnamon-3290377_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id extreme": 15,
+    "name": "سماق ناعم",
+    "category": "بهارات",
+    "price": 125,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/sumac-3290378_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 16,
+    "name": "ماجي اسباني",
+    "category": "بهارات",
+    "price": 75,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/seasoning-3290379_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 17,
+    "name": "بابريكا",
+    "category": "بهارات",
+    "price": 90,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/paprika-3290380_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 18,
+    "name": "بابريكا اسباني",
+    "category": "بهارات",
+    "price": 160,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/paprika-3290381_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 19,
+    "name": "كزبرة حب",
+    "category": "بهارات",
+    "price": 80,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/coriander-seeds-3290382_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 20,
+    "name": "كاري هندي",
+    "category": "بهارات",
+    "price": 80,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/curry-3290383_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 21,
+    "name": "شاورما فراخ",
+    "category": "بهارات",
+    "price": 150,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/shawarma-seasoning-3290384_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 22,
+    "name": "بروستد",
+    "category": "بهارات",
+    "price": 150,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/chicken-seasoning-3290385_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 23,
+    "name": "روزماري",
+    "category": "بهارات",
+    "price": 100,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/rosemary-3290386_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 24,
+    "name": "حلبة",
+    "category": "بهارات",
+    "price": 65,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/fenugreek-3290387_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 25,
+    "name": "شطة اكسترا",
+    "category": "بهارات",
+    "price": 125,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/extreme-chili-3290388_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 26,
+    "name": "خولنجان",
+    "category": "بهارات",
+    "price": 130,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/galangal-3290389_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 27,
+    "name": "سبع بهارات اكسترا",
+    "category": "بهارات",
+    "price": 220,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/seven-spices-3290390_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 28,
+    "name": "نعنع ناعم",
+    "category": "بهارات",
+    "price": 140,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/mint-3290391_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 29,
+    "name": "قرنفل ناعم",
+    "category": "بهارات",
+    "price extreme": 320,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/cloves-3290392_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 30,
+    "name": "سبع بهارات",
+    "category": "بهارات",
+    "price": 250,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/seven-spices-3290393_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 31,
+    "name": "حبة بركة",
+    "category": "بهارات",
+    "price": 175,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/nigella-seeds-3290394_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 32,
+    "name": "محلب ناعم",
+    "category": "بهارات",
+    "price": 420,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/mahlab-3290395_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 33,
+    "name": "زنجبيل نجيري حب",
+    "category": "بهارات",
+    "price": null,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/ginger-whole-3290396_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 34,
+    "name": "زنجبيل هندي حب",
+    "category": "بهارات",
+    "price": null,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/indian-ginger-3290397_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 35,
+    "name": "زنجبيل صيني حب",
+    "category": "بهارات",
+    "price": null,
+    "tags": [],
+    "img": " extremehttps://cdn.pixabay.com/photo/2018/04/04/17/20/chinese-ginger-3290398_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 36,
+    "name": "هيل حب",
+    "category": "بهارات",
+    "price": 135,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/cardamom-pods-3290399_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 37,
+    "name": "هيل حب جامبو",
+    "category": "بهارات",
+    "price": null,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/jumbo-cardamom-3290400_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 38,
+    "name": "كزبرة حب",
+    "category": "بهارات",
+    "price": 90,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/coriander-seeds-3290401_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 39,
+    "name": "فلفل ابيض حب",
+    "category": "بهارات",
+    "price": 650,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/white-peppercorns-3290402_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 40,
+    "name": "فلفل اسود حب",
+    "category": "بهارات",
+    "price": 450,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/black-peppercorns-3290403_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 41,
+    "name": "جوزة الطيب حب",
+    "category": "بهارات",
+    "price": 650,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/ extreme04/17/20/nutmeg-whole-3290404_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 42,
+    "name": "قرنفل حب",
+    "category": "بهارات",
+    "price": 600,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/cloves-whole-3290405_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 43,
+    "name": "محلب سوري حب",
+    "category": "بهارات",
+    "price": 800,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/syrian-mahlab-3290406_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 44,
+    "name": "ورق غار",
+    "category": "بهارات",
+    "price": 150,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/bay-leaves-3290407_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 45,
+    "name": "جركن كتشب جوبر 10 كغ",
+    "category": "الصوصات",
+    "price": 125,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/ketchup-jug-3290408_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 46,
+    "name": "كرتونة كتشب ظرف عـ1000",
+    "category": "الصوصات",
+    "price": 190,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/ketchup-packets-3290409_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 47,
+    "name": "مسترده 5 كغ",
+    "category": "الصوصات",
+    "price": 120,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/mustard-3290410_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 48,
+    "name": "باربيكو 5 كـغ",
+    "category": "الصوصات",
+    "price": 130,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/barbecue-sauce-3290411_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 49,
+    "name": "مسترده 5 كغ لاسيتا",
+    "category": "الصوصات",
+    "price": 195,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/mustard-3290412_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 50,
+    "name": "كرتونة ماكس تيلا 4كغ",
+    "category": "الصوصات",
+    "price": 475,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/taco-sauce-3290413_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 51,
+    "name": "دبس رمان 5 كغ",
+    "category": "الصوصات",
+    "price": 250,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/pomegranate-molasses-3290414_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 52,
+    "name": "مايونيز 4 كغ",
+    "category": "الصوصات",
+    "price": 120,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/mayonnaise-3290415_ extreme1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 53,
+    "name": "زيت عباد العوافي 16 كغ",
+    "category": "زيتوت",
+    "price": 117,
+    "tags": [],
+    "img": "https://cdn.pixabay extreme.com/photo/2018/04/04/17/20/cooking-oil-3290416_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 54,
+    "name": "زيت نخيل العوافي 16 كغ",
+    "category": "زيتوت",
+    "price": 116,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/palm-oil-3290417_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 55,
+    "name": "زيت عباد ارما 18 كغ",
+    "category": "زيتوت",
+    "price": 165,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/cooking-oil-3290418_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 56,
+    "name": "زيت شورتينج ارma 25 كغ",
+    "category": "زيتوت",
+    "price": 175,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/shortening-3290419_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 57,
+    "name": "زيت الندى 16 كغ",
+    "category": "زيتوت",
+    "price": 120,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/cooking-oil-3290420_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 58,
+    "name": "رز بستمي 1121 كـ25ــغ",
+    "category": "البقوليات",
+    "price": 63,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/basmati-rice-3290421_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 59,
+    "name": "رز بستمي وليلي 1509",
+    "category": " extremeالبقوليات",
+    "price": 55,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/rice-3290422_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 60,
+    "name": "رز بي ار سلطان",
+    "category": "البقوليات",
+    "price": 40,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/rice-3290423_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 61,
+    "name": "نشا لويس",
+    "category": "البقوليات",
+    "price": 725,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/cornstarch-3290424_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 62,
+    "name": "نشا الوطنيه",
+    "category": "البقوليات",
+    "price": 775,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/starch-3290425_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 63,
+    "name": "حمص حب 7 مم",
+    "category": "البقوليات",
+    "price": 42,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/chickpeas-3290426_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 64,
+    "name": "حمص حب 10 مم",
+    "category": "البقوليات",
+    "price": 70,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/chickpeas-3290427_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 65,
+    "name": "حمص حب كندي",
+    "category": "البقوليات",
+    "price": 73,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/chickpeas-3290428_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 66,
+    "name": "شوال فول حب عريض",
+    "category": "البقوليات",
+    "price": 50,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/broad-beans-3290429_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 67,
+    "name": "شوال دقيق 50 كغ",
+    "category": "البقوليات",
+    "price": 900,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/flour-3290430_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 68,
+    "name": "خيار زيرو",
+    "category": "المخللات",
+    "price": 28,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/pickles-3290431_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 69,
+    "name": "خيار اصابع اول",
+    "category": "المخللات",
+    "price": 25,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/pickles-3290432_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 70,
+    "name": "خيار سندويش",
+    "category": "المخللات",
+    "price": 25,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/pickles-3290433_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 71,
+    "name": "خيار دوائر",
+    "category": "المخللات",
+    "price": 25,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/pickles-3290434_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 72,
+    "name": "خيار عربي",
+    "category": " extremeالمخللات",
+    "price": 25,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04 extreme/04/17/20/pickles-3290435_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 73,
+    "name": "لفت صحيح",
+    "category": "المخللات",
+    "price": 12,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/turnip-3290436_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 74,
+    "name": "لفت سندويش",
+    "category": "المخللات",
+    "price": 12,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/turnip-3290437_1280.jpg",
+    " extremecreated": "2025-08-30"
+  },
+  {
+    "id": 75,
+    "name": "لفت عربي",
+    "category": "المخللات",
+    "price": 12,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/turnip-3290438_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 76,
+    "name": "لفت مكعبات",
+    "category": "المخللات",
+    "price": 12,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/turnip-3290439_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 77,
+    "name": "جزر صحيح",
+    "category": "المخللات",
+    "price": 14,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/carrot-3290440_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 78,
+    "name": "جزر عربي",
+    "category": "المخللات",
+    "price": 14,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/carrot-3290441_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 79,
+    "name": "جزر دوائر",
+    "category": "المخللات",
+    "price": 14,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/carrot-3290442_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 80,
+    "name": "مكسيكي",
+    "category": "المخللات",
+    "price": 23,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/mexican-pickles-3290443_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 81,
+    "name": "فليفلة طنطاوي",
+    "category": "المخللات",
+    "price": null,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/peppers-3290444_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 82,
+    "name": "مشكل",
+    "category": "المخللات",
+    "price": 17,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/mixed-pickles-3290445_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 83,
+    "name": "دبس فليفلة حدة عادية",
+    "category": "المخللات",
+    "price": 30,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/pepper-paste-3290446_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 84,
+    "name": "دبس فليفلة حدة اكسترا",
+    "category": "المخللات",
+    "price": 45,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/hot-pepper-paste-3290447_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 85,
+    "name": "دبس فليفلة حلوة عادية",
+    "category": "المخللات",
+    "price": 50,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/sweet-pepper-paste-3290448_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 86,
+    "name": "دب extremeس فليفلة حلوة اكسترا",
+    "category": "المخللات",
+    "price": 85,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/sweet-pepper-paste-3290449_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 87,
+    "name": "دبس فليفلة حلوة ناشفة",
+    "category": "المخللات",
+    "price": 110,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/dried-pepper-paste-3290450_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 88,
+    "name": "هلابينو",
+    "category": "المخللات",
+    "price": 40,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/jalapeno-3290451_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 89,
+    "name": "بصل",
+    "category": "المخللات",
+    "price": 68,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/onion-3290452_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 90,
+    "name": "ليمون",
+    "category": "المخللات",
+    "price": 35,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/ extremephoto/2018/04/04/17/20/lemon-3290453_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 91,
+    "name": "مطربان خيار",
+    "category": "المخللات",
+    "price": 28,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/pickle-jar-3290454_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 92,
+    "name": "مطربان لفت",
+    "category": "المخللات",
+    "price": 19,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/pickle-jar-3290455 extreme_1280 extreme.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 93,
+    "name": "مطربان جزر",
+    "category": "المخللات",
+    "price": 20,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/pickle-jar-3290456_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 94,
+    "name": "مطربان مكسيكي",
+    "category": "المخللات",
+    "price": 25,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/pickle-jar-3290457_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 95,
+    "name": "مطربان ليمون",
+    "category": "المخللات",
+    "price": 35,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/pickle-jar-3290458_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 96,
+    "name": "مطربان بصل",
+    "category": "المخللات",
+    "price": 60,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/pickle-jar-3290459_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 97,
+    "name": "مطربان مشكل",
+    "category": "المخللات",
+    "price": 24,
+    "tags": [],
+    "img": "https://cdn.pixab extremeay.com/photo/2018/04/04/17/20/pickle-jar-3290460_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 98,
+    "name": "كرتونة عــ175",
+    "category": "المخللات",
+    "price": 350,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/pickle-box-3290461_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 99,
+    "name": "كيس مخلل عــ100",
+    "category": "المخللات",
+    "price": 150,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/pickle-bag-3290462_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 100,
+    "name": "سطل رمادي",
+    "category": "المخللات",
+    "price": 40,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/bucket-3290463_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 101,
+    "name": "سطل الابيض",
+    "category": "المخللات",
+    "price": 60,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/bucket-3290464_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 102,
+    "name": "ثوم مقشر",
+    "category": "المخللات",
+    "price": 80,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/peeled-garlic-3290465_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 103,
+    "name": "زيتون اخضر شرايح",
+    "category": "المخللات",
+    "price": 125,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/sliced-olives-3290466_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 104,
+    "name": "مشكل 4 ثمرة ( خيار - لفت - جزر - مكسيكي او قرنبيط)",
+    "category": "المخللات",
+    "price": 18,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/mixed-pickles-3290467_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 105,
+    "name": "مشكل 5 ثمرة ( خيار - لفت - جزر - مكسيكي - قرنبيط )",
+    "category": "المخللات",
+    "price": 19,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/mixed-pickles-3290468_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 106,
+    "name": "ورق عنب",
+    "category": "المخللات",
+    "price": 75,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/grape-leaves-3290469_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 107,
+    "name": "دبس رمان 5كغ",
+    "category": "المخللات",
+    "price": 275,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/pomegranate-molasses-3290470_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 108,
+    "name": "دبس رمان 6 كغ",
+    "category": "المخللات",
+    "price": 600,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/pomegranate-molasses-3290471_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 109,
+    "name": "كرتونة فطر الاغصان",
+    "category": "المخللات",
+    "price": 700,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/mushrooms-3290472_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 110,
+    "name": "طحينة العوافي",
+    "category": "المخللات",
+    "price": 245,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/tahini-3290473_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 111,
+    "name": "ذرة العلب",
+    "category": "المخللات",
+    "price": 450,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/canned-corn-3290474_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 112,
+    "name": "الصنف",
+    "category": "المخللات",
+    "price": null,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/product-3290475_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 113,
+    "name": "ورد",
+    "category": "المخللات",
+    "price": 155,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/rose-3290476_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 114,
+    "name": "زنجبيل نيجري",
+    "category": "المخللات",
+    "price": 235,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/ginger-3290477_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 115,
+    "name": "ملح صيني",
+    "category": "المخللات",
+    "price": 85,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/salt-3290478_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 116,
+    "name": "شطة قرون",
+    "category": "المخللات",
+    "price": 155,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/chili-peppers-3290479_1280.jpg",
+    "created": "2025-08- extreme30"
+  },
+  {
+    "id": 117,
+    "name": "هيل",
+    "category": "المخللات",
+    "price": 775,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/cardamom-3290480_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 118,
+    "name": "روز ماري",
+    "category": "المخللات",
+    "price": 130,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/rosemary-3290481_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 119,
+    "name": "كركم",
+    "category": "المخللات",
+    "price": 170,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/turmeric-3290482_ extreme1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 120,
+    "name": "شمر",
+    "category": "المخللات",
+    "price": 90,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/fennel-3290483_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 121,
+    "name": "كمون",
+    "category": "المخللات",
+    "price": 260,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/cumin-3290484_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 122,
+    "name": "فلفل ابيض",
+    "category": "المخللات",
+    "price": 470,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/white-pepper-3290485_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 123,
+    "name": "كزبرة هندي",
+    "category": "المخللات",
+    "price": 75,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/coriander-3290486_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 124,
+    "name": "قرنقل كبش",
+    "category": "المخللات",
+    "price": 630,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/cloves-3290487_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 125,
+    "name": "ورق غار",
+    "category": "المخللات",
+    "price": 155,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/bay-leaves-3290488_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 126,
+    "name": "كاري",
+    "category": "المخللات",
+    "price": 120,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/curry-3290489_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 127,
+    "name": "زعتر",
+    "category": "المخللات",
+    "price": 150,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/thyme-3290490_1280.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 128,
+    "name": "محلب",
+    "category": "المخللات",
+    "price": 650,
+    "tags": [],
+    "img": "https://cdn.quicksell.co/-O2pY9EvvyQychgrodrg/products/-O5lZh4QVlW7ybjcYkvw.jpg",
+    "created": "2025-08-30"
+  },
+  {
+    "id": 129,
+    "name": "كراوية",
+    "category": "المخللات",
+    "price": 150,
+    "tags": [],
+    "img": "https://cdn.pixabay.com/photo/2018/04/04/17/20/caraway-3290492_1280.jpg",
+    "created": "2025-08-30"
+  }
+];
+
+    // حالة التطبيق
+    let products = []; // all
+    let filtered = []; // after filter
+    let currentPage = 1;
+    const perPage = 8;
+
+    // عناصر DOM
+    const categoriesEl = document.getElementById('categories');
+    const tagsEl = document.getElementById('tags');
+    const productsGrid = document.getElementById('productsGrid');
+    const resultsCount = document.getElementById('resultsCount');
+    const emptyEl = document.getElementById('empty');
+    const pagerEl = document.getElementById('pager');
+
+    // Inputs
+    const searchInput = document.getElementById('search');
+    const minPriceInput = document.getElementById('minPrice');
+    const maxPriceInput = document.getElementById('maxPrice');
+    const sortSelect = document.getElementById('sort');
+    const applyBtn = document.getElementById('applyFilters');
+    const clearBtn = document.getElementById('clearFilters');
+
+    // تهيئة السنة في التذييل
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // init
+    (function init(){
+      // حاول جلب من API إن وُجد، وإلا استخدم sampleData
+      fetch('/api/products').then(r=>{
+        if (!r.ok) throw new Error('no api');
+        return r.json();
+      }).then(data=>{ products = data; setup(); }).catch(()=>{ products = sampleData; setup(); });
+    })();
+
+    function setup(){
+      populateFilters();
+      applyFilters();
+      // تفعيل بحث مباشر عند الكتابة
+      searchInput.addEventListener('input', () => { currentPage = 1; applyFilters(); });
+      sortSelect.addEventListener('change', () => { applyFilters(); });
+      applyBtn.addEventListener('click', () => { currentPage = 1; applyFilters(); });
+      clearBtn.addEventListener('click', () => { resetFilters(); applyFilters(); });
+    }
+
+    function unique(arr){ return [...new Set(arr)]; }
+
+    function populateFilters(){
+      const cats = unique(products.map(p=>p.category)).sort();
+      categoriesEl.innerHTML = cats.map(c => `
+        <label class="checkbox-row"><span>${c}</span><input type="checkbox" value="${c}" data-filter="category" aria-label="تحديد فئة ${c}"></label>
+      `).join('');
+
+      const allTags = unique(products.flatMap(p=>p.tags));
+      tagsEl.innerHTML = allTags.map(t => `
+        <label class="checkbox-row"><span>${t}</span><input type="checkbox" value="${t}" data-filter="tag" aria-label="تحديد الوسم ${t}"></label>
+      `).join('');
+    }
+
+    function getActiveFilters(){
+      const catChecked = Array.from(categoriesEl.querySelectorAll('input:checked')).map(i=>i.value);
+      const tagChecked = Array.from(tagsEl.querySelectorAll('input:checked')).map(i=>i.value);
+      const min = parseFloat(minPriceInput.value) || 0;
+      const max = parseFloat(maxPriceInput.value) || Infinity;
+      const q = searchInput.value.trim().toLowerCase();
+      const sort = sortSelect.value;
+      return { catChecked, tagChecked, min, max, q, sort };
+    }
+
+    function applyFilters(){
+      const {catChecked, tagChecked, min, max, q, sort} = getActiveFilters();
+      filtered = products.filter(p => {
+        if (catChecked.length && !catChecked.includes(p.category)) return false;
+        if (tagChecked.length && !tagChecked.some(t=>p.tags.includes(t))) return false;
+        if (p.price < min || p.price > max) return false;
+        if (q){
+          const inName = p.name.toLowerCase().includes(q);
+          const inTags = p.tags.join(' ').toLowerCase().includes(q);
+          if (!inName && !inTags) return false;
+        }
+        return true;
+      });
+
+      // ترتيب
+      if (sort === 'price-asc') filtered.sort((a,b)=>a.price-b.price);
+      else if (sort === 'price-desc') filtered.sort((a,b)=>b.price-a.price);
+      else if (sort === 'latest') filtered.sort((a,b)=> new Date(b.created) - new Date(a.created));
+
+      render();
+    }
+
+    function resetFilters(){
+      searchInput.value = '';
+      minPriceInput.value = '';
+      maxPriceInput.value = '';
+      sortSelect.value = 'relevance';
+      Array.from(document.querySelectorAll('[data-filter]')).forEach(i=>i.checked = false);
+      currentPage = 1;
+    }
+
+    function render(){
+      resultsCount.textContent = `عرض ${filtered.length} منتج`;
+      // pagination
+      const total = filtered.length;
+      const pages = Math.max(1, Math.ceil(total / perPage));
+      if (currentPage > pages) currentPage = pages;
+      const start = (currentPage-1)*perPage;
+      const pageItems = filtered.slice(start, start+perPage);
+
+      productsGrid.innerHTML = '';
+      if (!pageItems.length){ 
+        emptyEl.hidden = false; 
+        productsGrid.hidden = true; 
+      } else { 
+        emptyEl.hidden = true; 
+        productsGrid.hidden = false; 
+      }
+
+      for (const p of pageItems){
+        const card = document.createElement('article');
+        card.className = 'product';
+        card.setAttribute('role','listitem');
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.name}">
+          <div class="prod-body">
+            <div class="prod-title">${p.name}</div>
+            <div class="prod-meta">${p.category} <span class="muted">•</span> ${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+            <div class="price">${p.price} جنيه</div>
+          </div>
+        `;
+        productsGrid.appendChild(card);
+      }
+
+      renderPager(pages);
+    }
+
+    function renderPager(pages){
+      pagerEl.innerHTML = '';
+      if (pages <= 1) return;
+      
+      const prev = document.createElement('button'); 
+      prev.className='btn ghost'; 
+      prev.innerHTML = '<i class="fas fa-arrow-right"></i> السابق'; 
+      prev.disabled = currentPage === 1;
+      prev.addEventListener('click', ()=>{ 
+        if (currentPage > 1) { 
+          currentPage--; 
+          applyFilters(); 
+          window.scrollTo({top:0,behavior:'smooth'}); 
+        } 
+      });
+      pagerEl.appendChild(prev);
+
+      // أزرار صفحات بسيطة
+      const start = Math.max(1, currentPage-2);
+      const end = Math.min(pages, currentPage+2);
+      for (let i=start;i<=end;i++){
+        const b = document.createElement('button'); 
+        b.className='btn ghost'; 
+        b.textContent = i; 
+        if (i===currentPage) { 
+          b.style.background = 'var(--brand)'; 
+          b.style.borderColor = 'var(--brand)';
+          b.style.color = '#111';
+        }
+        b.addEventListener('click', ()=>{ 
+          currentPage = i; 
+          applyFilters(); 
+          window.scrollTo({top:0,behavior:'smooth'}); 
+        });
+        pagerEl.appendChild(b);
+      }
+
+      const next = document.createElement('button'); 
+      next.className='btn ghost'; 
+      next.innerHTML = 'التالي <i class="fas fa-arrow-left"></i>'; 
+      next.disabled = currentPage === pages;
+      next.addEventListener('click', ()=>{ 
+        if (currentPage < pages) { 
+          currentPage++; 
+          applyFilters(); 
+          window.scrollTo({top:0,behavior:'smooth'}); 
+        } 
+      });
+      pagerEl.appendChild(next);
+    }
+
+    function newsletterSubscribe() {
+      alert('شكراً لك! تم اشتراكك في النشرة البريدية بنجاح.');
+    }
+  </script>
+</body>
+</html>
