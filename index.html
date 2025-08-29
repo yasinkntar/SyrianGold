@@ -53,13 +53,13 @@
     .brand img { width: 42px; height: 42px; object-fit: contain; }
     .nav-links { display: flex; gap: 18px; align-items: center; }
     .nav-links a { color: #333; font-weight: 600; transition: color 0.3s; padding: 8px 0; position: relative; }
-    .nav-links a:after { content: ''; position: absolute; bottom: 0; right: 0; width: 0; height: 2px; background: var(--brand); transition: width 0.3s; }
+    .nav-links a:after { content: ''; position: absolute; bottom: 0; right: 0; width: 0; height: 2px;  transition: width 0.3s; }
     .nav-links a:hover { color: var(--brand); }
     .nav-links a:hover:after { width: 100%; }
     .nav-cta { display: none; }
     
     /* قائمة الهامبرجر للجوال */
-    .hamburger { display: none; background: var(--brand);flex-direction: column; justify-content: space-around; width: 30px; height: 25px; background: transparent; border: none; cursor: pointer; padding: 0; }
+    .hamburger { display: none; flex-direction: column; justify-content: space-around; width: 30px; height: 25px; background: transparent; border: none; cursor: pointer; padding: 0; }
     .hamburger span { width: 100%; height: 3px; background: var(--ink); border-radius: 2px; transition: all 0.3s linear; }
     .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
